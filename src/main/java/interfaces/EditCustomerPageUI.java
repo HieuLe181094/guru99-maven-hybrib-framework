@@ -1,4 +1,4 @@
 package interfaces;
 
-public class LoginPageUI {
+public class EditCustomerPageUI {
 }

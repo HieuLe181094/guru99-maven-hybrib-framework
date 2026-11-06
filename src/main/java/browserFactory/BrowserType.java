@@ -1,4 +1,5 @@
 package browserFactory;
 
-public class BrowserType {
+public enum BrowserType {
+    CHROME, FIREFOX, EDGE, SAFARI, COCCOC;
 }

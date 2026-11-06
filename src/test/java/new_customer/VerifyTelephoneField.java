@@ -2,6 +2,9 @@ package new_customer;
 
 import commons.BaseTest;
 import commons.GlobalContaints;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -10,7 +13,11 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageOjects.*;
 
-public class VerifyStateField extends BaseTest {
+import java.security.Key;
+
+@Epic("Bank Guru")
+@Feature("New Customer")
+public class VerifyTelephoneField extends BaseTest {
     @Parameters({"url", "browser"})
     @BeforeClass
     public void beforeClass(String url, String browser){
@@ -27,34 +34,34 @@ public class VerifyStateField extends BaseTest {
         newCustomerPage = PageGenerator.getPageInstance(NewCustomerPO.class, driver);
     }
 
+    @Story("Verify Telephone cannot be empty")
     @Test
-    public void NC12_State_cannot_be_empty(){
-        newCustomerPage.enterToStateTextbox("");
-        newCustomerPage.enterKeyboardToStateTextbox(Keys.TAB);
-        Assert.assertEquals(newCustomerPage.getStateErrorMessage(),"State must not be blank");
+    public void NC22_Telephone_cannot_be_empty(){
+        newCustomerPage.enterToTelephoneTextbox("");
+        newCustomerPage.enterKeyboardToTelephoneTextbox(Keys.TAB);
+        Assert.assertEquals(newCustomerPage.getTelephoneErrorMessage(),"Telephone no must not be blank");
     }
 
+    @Story("Verify Telephone cannot have first character as blank space")
     @Test
-    public void NC13_State_cannot_be_numberic(){
-        newCustomerPage.enterToStateTextbox("1234");
-        Assert.assertEquals(newCustomerPage.getStateErrorMessage(),"Numbers are not allowed");
+    public void NC23_Telephone_cannot_have_first_character_as_blank_space(){
+        newCustomerPage.enterToTelephoneTextbox(" ");
+        Assert.assertEquals(newCustomerPage.getTelephoneErrorMessage(),"Characters are not allowed");
     }
 
+    @Story("Verify Telephone cannot have spaces")
     @Test
-    public void NC14_State_cannot_have_special_charater(){
-        newCustomerPage.enterToStateTextbox("State!@#");
-        Assert.assertEquals(newCustomerPage.getStateErrorMessage(),"Special characters are not allowed");
+    public void NC24_Telephone_cannot_have_spaces(){
+        newCustomerPage.enterToTelephoneTextbox("123 123");
+        Assert.assertEquals(newCustomerPage.getTelephoneErrorMessage(),"Characters are not allowed");
     }
 
+    @Story("Verify Telephone cannot have special character")
     @Test
-    public void NC15_State_cannot_have_first_blank_space(){
-        newCustomerPage.enterToStateTextbox(" ");
-        newCustomerPage.enterKeyboardToStateTextbox(Keys.BACK_SPACE);
-        Assert.assertEquals(newCustomerPage.getStateErrorMessage(),"State must not be blank");
+    public void NC25_Telephone_cannot_have_special_charater(){
+        newCustomerPage.enterToTelephoneTextbox("123!@#");
+        Assert.assertEquals(newCustomerPage.getTelephoneErrorMessage(),"Special characters are not allowed");
     }
-
-
-
 
     @AfterClass(alwaysRun =true)
     public void afterClass(){

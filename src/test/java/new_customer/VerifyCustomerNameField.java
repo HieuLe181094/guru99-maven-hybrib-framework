@@ -2,8 +2,10 @@ package new_customer;
 
 import commons.BaseTest;
 import commons.GlobalContaints;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -11,7 +13,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageOjects.*;
 
-public class VerifyNameField extends BaseTest {
+@Epic("Bank Guru")
+@Feature("New Customer")
+public class VerifyCustomerNameField extends BaseTest {
     @Parameters({"url", "browser"})
     @BeforeClass
     public void beforeClass(String url, String browser){
@@ -28,32 +32,36 @@ public class VerifyNameField extends BaseTest {
         newCustomerPage = PageGenerator.getPageInstance(NewCustomerPO.class, driver);
     }
 
+    @Story("Verify name cannot be empty")
     @Test
     public void NC1_Name_cannot_be_empty(){
         newCustomerPage.enterToCustomerNameTextbox("");
         newCustomerPage.enterKeyboardToCustomerNameTextbox(Keys.TAB);
-        Assert.assertEquals(newCustomerPage.getErrorMessage(),"Customer name must not be blank");
+        Assert.assertEquals(newCustomerPage.getCustomerNameErrorMessage(),"Customer name must not be blank");
     }
 
+    @Story("Verify name cannot be numberic")
     @Test
     public void NC2_Name_cannot_be_numberic(){
         newCustomerPage.enterToCustomerNameTextbox("1234");
-        Assert.assertEquals(newCustomerPage.getErrorMessage(), "Numbers are not allowed");
+        Assert.assertEquals(newCustomerPage.getCustomerNameErrorMessage(), "Numbers are not allowed");
     }
 
+    @Story("Verify name cannot have special characters")
     @Test
     public void NC3_Name_cannot_have_special_characters(){
         newCustomerPage.enterToCustomerNameTextbox("name!@#");
-        Assert.assertEquals(newCustomerPage.getErrorMessage(),"Special characters are not allowed");
+        Assert.assertEquals(newCustomerPage.getCustomerNameErrorMessage(),"Special characters are not allowed");
     }
 
+    @Story("Verify name cannot have first charater as blank space")
     @Test
     public void NC4_Name_cannot_have_first_charater_as_blank_space(){
         newCustomerPage.enterToCustomerNameTextbox("");
         newCustomerPage.enterKeyboardToCustomerNameTextbox(Keys.BACK_SPACE);
-        Assert.assertEquals(newCustomerPage.getErrorMessage(),"Customer name must not be blank");
+        Assert.assertEquals(newCustomerPage.getCustomerNameErrorMessage(),"Customer name must not be blank");
     }
-    
+
     @AfterClass(alwaysRun =true)
     public void afterClass(){
         closeBrowser();

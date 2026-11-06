@@ -2,6 +2,9 @@ package new_customer;
 
 import commons.BaseTest;
 import commons.GlobalContaints;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -10,9 +13,14 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageOjects.*;
 
-import java.security.Key;
+import javax.naming.NamingEnumeration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class VerifyTelephoneField extends BaseTest {
+@Epic("Bank Guru")
+@Feature("New Customer")
+public class VerifyEmailField extends BaseTest {
     @Parameters({"url", "browser"})
     @BeforeClass
     public void beforeClass(String url, String browser){
@@ -29,35 +37,41 @@ public class VerifyTelephoneField extends BaseTest {
         newCustomerPage = PageGenerator.getPageInstance(NewCustomerPO.class, driver);
     }
 
+    @Story("Verify Email cannot be empty")
     @Test
-    public void NC22_Telephone_cannot_be_empty(){
-        newCustomerPage.enterToTelephoneTextbox("");
-        newCustomerPage.enterKeyboardToTelephoneTextbox(Keys.TAB);
-        Assert.assertEquals(newCustomerPage.getTelephoneErrorMessage(),"Telephone no must not be blank");
+    public void NC26_Email_cannot_be_empty(){
+        newCustomerPage.enterToEmailTextbox("");
+        newCustomerPage.enterKeyboardToEmailTextbox(Keys.TAB);
+        Assert.assertEquals(newCustomerPage.getEmailErrorMessage(),"Email-ID must not be blank");
     }
 
+    @Story("Verify Email must be in correct format")
     @Test
-    public void NC23_Telephone_cannot_have_first_character_as_blank_space(){
-        newCustomerPage.enterToTelephoneTextbox(" ");
-        Assert.assertEquals(newCustomerPage.getTelephoneErrorMessage(),"Characters are not allowed");
+    public void NC26_Email_must_be_in_correct_format(){
+        newCustomerPage.enterToEmailTextbox("guru99@gmail");
+        Assert.assertEquals(newCustomerPage.getEmailErrorMessage(),"Email-ID is not valid");
     }
 
+    @Story("Verify Email cannot have space")
     @Test
-    public void NC24_Telephone_cannot_have_spaces(){
-        newCustomerPage.enterToTelephoneTextbox("123 123");
-        Assert.assertEquals(newCustomerPage.getTelephoneErrorMessage(),"Characters are not allowed");
+    public void NC28_Email_cannot_have_space(){
+        newCustomerPage.enterToEmailTextbox(" ");
+        Assert.assertEquals(newCustomerPage.getEmailErrorMessage(),"Email-ID is not valid");
     }
 
+    @Story("Verify all field labels are displayed")
     @Test
-    public void NC25_Telephone_cannot_have_special_charater(){
-        newCustomerPage.enterToTelephoneTextbox("123!@#");
-        Assert.assertEquals(newCustomerPage.getTelephoneErrorMessage(),"Special characters are not allowed");
+    public void NC29_Verify_all_field_labels(){
+        List<String> expectedLabels = Arrays.asList(
+                "Customer Name", "Gender", "Date of Birth ", "Address", "City", "State", "PIN",
+                "Telephone Number", "E-mail");
+        for (String label : expectedLabels) {
+            Assert.assertTrue(
+                    newCustomerPage.isFieldLabelDisplayed(label),
+                    "Field label is not displayed: " + label
+            );
+        }
     }
-
-
-
-
-
 
     @AfterClass(alwaysRun =true)
     public void afterClass(){

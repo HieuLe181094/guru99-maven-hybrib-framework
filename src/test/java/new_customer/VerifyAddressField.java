@@ -15,7 +15,7 @@ import pageOjects.*;
 
 @Epic("Bank Guru")
 @Feature("New Customer")
-public class Verify_Address_Field extends BaseTest {
+public class VerifyAddressField extends BaseTest {
     @Parameters({"url", "browser"})
     @BeforeClass
     public void beforeClass(String url, String browser){

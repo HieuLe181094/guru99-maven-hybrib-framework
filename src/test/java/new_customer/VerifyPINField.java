@@ -2,6 +2,9 @@ package new_customer;
 
 import commons.BaseTest;
 import commons.GlobalContaints;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -10,7 +13,9 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageOjects.*;
 
-public class VerifyStateField extends BaseTest {
+@Epic("Bank Guru")
+@Feature("New Customer")
+public class VerifyPINField extends BaseTest {
     @Parameters({"url", "browser"})
     @BeforeClass
     public void beforeClass(String url, String browser){
@@ -27,33 +32,49 @@ public class VerifyStateField extends BaseTest {
         newCustomerPage = PageGenerator.getPageInstance(NewCustomerPO.class, driver);
     }
 
+    @Story("Veriry PIN must be numberic")
     @Test
-    public void NC12_State_cannot_be_empty(){
-        newCustomerPage.enterToStateTextbox("");
-        newCustomerPage.enterKeyboardToStateTextbox(Keys.TAB);
-        Assert.assertEquals(newCustomerPage.getStateErrorMessage(),"State must not be blank");
+    public void NC16_PIN_must_be_numberic(){
+        newCustomerPage.enterToPinTextbox("1234PIN");
+        Assert.assertEquals(newCustomerPage.getPinErrorMessage(),"Characters are not allowed");
     }
 
+    @Story("Veriry PIN cannot be empty")
     @Test
-    public void NC13_State_cannot_be_numberic(){
-        newCustomerPage.enterToStateTextbox("1234");
-        Assert.assertEquals(newCustomerPage.getStateErrorMessage(),"Numbers are not allowed");
+    public void NC17_PIN_cannot_be_empty(){
+        newCustomerPage.enterToPinTextbox("");
+        newCustomerPage.enterKeyboardToPinTextbox(Keys.TAB);
+        Assert.assertEquals(newCustomerPage.getPinErrorMessage(),"PIN Code must not be blank");
     }
 
+    @Story("Veriry PIN must have 6 digits")
     @Test
-    public void NC14_State_cannot_have_special_charater(){
-        newCustomerPage.enterToStateTextbox("State!@#");
-        Assert.assertEquals(newCustomerPage.getStateErrorMessage(),"Special characters are not allowed");
+    public void NC18_PIN_must_have_6_digits(){
+        newCustomerPage.enterToPinTextbox("12");
+        Assert.assertEquals(newCustomerPage.getPinErrorMessage(),"PIN Code must have 6 Digits");
     }
 
+    @Story("Veriry PIN cannot have special charater")
     @Test
-    public void NC15_State_cannot_have_first_blank_space(){
-        newCustomerPage.enterToStateTextbox(" ");
-        newCustomerPage.enterKeyboardToStateTextbox(Keys.BACK_SPACE);
-        Assert.assertEquals(newCustomerPage.getStateErrorMessage(),"State must not be blank");
+    public void NC19_PIN_cannot_have_special_charater(){
+        newCustomerPage.enterToPinTextbox("!@#");
+        Assert.assertEquals(newCustomerPage.getPinErrorMessage(),"Special characters are not allowed");
     }
 
+    @Story("Veriry PIN cannot have first blank space")
+    @Test
+    public void NC20_PIN_cannot_have_first_blank_space(){
+        newCustomerPage.enterToPinTextbox(" ");
+        Assert.assertEquals(newCustomerPage.getPinErrorMessage(),"Characters are not allowed");
+    }
 
+    // Trên hệ thống đang cho nhập PIN với space ở kí tự đầu tiên
+    @Story("Veriry PIN cannot have blank space")
+    @Test
+    public void NC21_PIN_cannot_have_blank_space(){
+        newCustomerPage.enterToPinTextbox(" ");
+        Assert.assertEquals(newCustomerPage.getPinErrorMessage(),"Characters are not allowed");
+    }
 
 
     @AfterClass(alwaysRun =true)

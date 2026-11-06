@@ -11,15 +11,10 @@
     <parameter name="url" value="https://demo.guru99.com/"/>
     <parameter name="browser" value="firefox"/>
 
-    <test name="New Customer Test">
+    <test name="Edit Customer Test">
         <classes>
-            <class name="new_customer.VerifyCustomerNameField"/>
-            <class name="new_customer.VerifyAddressField"/>
-            <class name="new_customer.VerifyCityField"/>
-            <class name="new_customer.VerifyStateField"/>
-            <class name="new_customer.VerifyPINField"/>
-            <class name="new_customer.VerifyTelephoneField"/>
-            <class name="new_customer.VerifyEmailField"/>
+            <class name="edit_customer.VerifyCustomerID"/>
+
         </classes>
     </test>
 
