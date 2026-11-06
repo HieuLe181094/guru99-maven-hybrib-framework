@@ -16,4 +16,8 @@ public class BasePageUI {
     // LABEL
     public static final String FIELD_LABEL_BY_TEXT = "xpath=//table[@class='layout']//td[text()='%s']";
 
+    // BUTTON
+    public static final String SUBMIT_BUTTON = "xpath=//input[@name='AccSubmit']";
+    public static final String RESET_BUTTON = "xpath=//input[@name='res']";
+
 }

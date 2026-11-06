@@ -29,4 +29,10 @@
         </classes>
     </test>
 
+    <test name="Delete Customer Test">
+        <classes>
+            <class name="delete_customer.VerifyCustomerID"/>
+        </classes>
+    </test>
+
 </suite>

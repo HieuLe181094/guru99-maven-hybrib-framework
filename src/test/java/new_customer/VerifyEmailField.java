@@ -13,8 +13,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageOjects.*;
 
-import javax.naming.NamingEnumeration;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -83,5 +81,5 @@ public class VerifyEmailField extends BaseTest {
     ManagementP0 managementPage;
     NewCustomerPO newCustomerPage;
     EditCustomerPO editCustomerPage;
-    DeteleCustomerPO deleteCustomerPage;
+    DeleteCustomerPO deleteCustomerPage;
 }

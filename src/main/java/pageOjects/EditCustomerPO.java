@@ -17,11 +17,14 @@ public class EditCustomerPO extends ManagementP0 {
         enterToTextboxByName("cusid", value);
     }
 
+    @Step("Press keyboard for Customer ID")
     public void enterKeyboardToCustomerIDTextbox(Keys keys) {
         enterKeyboardToTextboxByName("cusid", keys);
     }
 
+    @Step("Get Customer ID error message")
     public String getCustomerIDErrorMessage() {
         return getErrorMessageByField("Customer ID", "message14");
     }
+
 }

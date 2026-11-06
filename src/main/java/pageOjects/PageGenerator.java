@@ -27,6 +27,6 @@ public class PageGenerator {
 
     public static EditCustomerPO getEditCustomerPage(WebDriver driver){return new EditCustomerPO(driver);}
 
-    public static DeteleCustomerPO getDeleteCustomerPage(WebDriver driver){return new DeteleCustomerPO(driver);}
+    public static DeleteCustomerPO getDeleteCustomerPage(WebDriver driver){return new DeleteCustomerPO(driver);}
 
 }

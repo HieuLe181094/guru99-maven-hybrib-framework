@@ -13,8 +13,6 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageOjects.*;
 
-import java.security.Key;
-
 @Epic("Bank Guru")
 @Feature("New Customer")
 public class VerifyTelephoneField extends BaseTest {
@@ -73,5 +71,5 @@ public class VerifyTelephoneField extends BaseTest {
     ManagementP0 managementPage;
     NewCustomerPO newCustomerPage;
     EditCustomerPO editCustomerPage;
-    DeteleCustomerPO deleteCustomerPage;
+    DeleteCustomerPO deleteCustomerPage;
 }

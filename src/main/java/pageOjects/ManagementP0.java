@@ -2,13 +2,7 @@ package pageOjects;
 
 import commons.BasePage;
 import interfaces.BasePageUI;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
-import java.util.List;
 
 public class ManagementP0 extends BasePage {
 
@@ -38,9 +32,9 @@ public class ManagementP0 extends BasePage {
         return PageGenerator.getPageInstance(EditCustomerPO.class, driver);
     }
 
-    public DeteleCustomerPO openDeleteCustomerPage(String pageName){
+    public DeleteCustomerPO openDeleteCustomerPage(String pageName){
         waitForElementClickable(driver, BasePageUI.DYNAMIC_SIDEBAR_LINK_BY_NAME, pageName);
         clickToElement(driver, BasePageUI.DYNAMIC_SIDEBAR_LINK_BY_NAME,pageName);
-        return PageGenerator.getPageInstance(DeteleCustomerPO.class, driver);
+        return PageGenerator.getPageInstance(DeleteCustomerPO.class, driver);
     }
 }

@@ -73,5 +73,5 @@ public class VerifyStateField extends BaseTest {
     ManagementP0 managementPage;
     NewCustomerPO newCustomerPage;
     EditCustomerPO editCustomerPage;
-    DeteleCustomerPO deleteCustomerPage;
+    DeleteCustomerPO deleteCustomerPage;
 }

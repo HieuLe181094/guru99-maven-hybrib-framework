@@ -38,7 +38,27 @@ public class VerifyCustomerID extends BaseTest {
         editCustomerPage.enterToCustomerIDTextbox("");
         editCustomerPage.enterKeyboardToCustomerIDTextbox(Keys.TAB);
         Assert.assertEquals(editCustomerPage.getCustomerIDErrorMessage(),"Customer ID is required");
+    }
 
+    @Story("Verify Customer ID must be numberic")
+    @Test
+    public void EC2_Customer_ID_must_be_numberic(){
+        editCustomerPage.enterToCustomerIDTextbox("abc");
+        Assert.assertEquals(editCustomerPage.getCustomerIDErrorMessage(),"Characters are not allowed");
+    }
+
+    @Story("Verify Customer ID cannot have special charater")
+    @Test
+    public void EC3_Customer_ID_cannot_have_special_charater(){
+        editCustomerPage.enterToCustomerIDTextbox("!@#123");
+        Assert.assertEquals(editCustomerPage.getCustomerIDErrorMessage(),"Special characters are not allowed");
+    }
+
+    @Story("Verify Customer ID is valid")
+    @Test
+    public void EC2_Customer_ID_is_valid(){
+        editCustomerPage.enterToCustomerIDTextbox("123456");
+        editCustomerPage.clickToSubmitButton();
     }
 
     @AfterClass(alwaysRun = true)

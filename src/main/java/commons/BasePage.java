@@ -2,6 +2,7 @@ package commons;
 
 import interfaces.BasePageUI;
 import interfaces.NewCustomerPageUI;
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -220,9 +221,9 @@ public class BasePage {
         return getElementText(driver, dynamicLocator);
     }
 
-
-
-
-
-
+    @Step("Click to Submit button")
+    public void clickToSubmitButton() {
+        waitForElementClickable(driver, BasePageUI.SUBMIT_BUTTON);
+        waitForElementClickable(driver, BasePageUI.SUBMIT_BUTTON);
+    }
 }
